@@ -6,4 +6,4 @@ MvcToFubuRegistry.
 
 1. In your global.asax in the Application_Start make a call to
 
-MvcToFubuApplication.Start<SampleRegistry>(ObjectFactory.Container);
+`MvcToFubuApplication.Start<SampleRegistry>(ObjectFactory.Container);`
