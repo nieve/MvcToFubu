@@ -7,13 +7,20 @@ namespace MvcToFubu.Mvc
 {
     public class MvcToFubuControllerFactory : DefaultControllerFactory
     {
+        private readonly IContainer _container;
+
+        public MvcToFubuControllerFactory(IContainer container)
+        {
+            _container = container;
+        }
+
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
         {
             Controller result = null;
             if (controllerType != null)
             {
-                result = (Controller)ObjectFactory.Container.GetInstance(controllerType);
-                result.ActionInvoker = new MvcToFubuControllerActionInvoker();
+                result = (Controller)_container.GetInstance(controllerType);
+                result.ActionInvoker = new MvcToFubuControllerActionInvoker(_container);
             }
             return result;
         }
